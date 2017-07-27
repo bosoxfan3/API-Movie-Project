@@ -12,16 +12,19 @@
 <body>
   <div class="js-start-page">
     <h1>Find Your Film</h1>
-    <input type="text" placeholder="ie. Nicholas Cage"></input>
-    <button type="submit">Submit</button>
+    <form action="#" class="js-form">
+      <label for="query"></label>
+      <input type="text" placeholder="ie. Nicholas Cage" class="js-input"></input>
+      <button type="submit" class="js-submit">Submit</button>
+    </form>
   </div>
 
   <div class="js-actor-result-page"></div>
 
   <div class="js-movie-result-page"></div>
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="movie.js"></script>
+  <script src="movie.js" crossorigin></script>
 </body>
 
 </html>
