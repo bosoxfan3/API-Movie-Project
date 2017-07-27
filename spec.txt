@@ -1,0 +1,13 @@
+Find Your Film:
+
+App allows user to find movies by searching an actor or actress name. It will display poster, title and rating for all relevant movies. There’ll be a hover button for displaying summary of movie.
+
+To help user find new films with their favorite actors in a user friendly environment
+
+For movie watchers
+
+As a user, I want to find films of my favorite actor by first/last/full name. I want to easily learn about the film.
+
+As a moderator, I want users to easily access movie information in 2 clicks at most
+
+Open question: How to deal with common names. How to hover for more info (mouseover)
