@@ -23,17 +23,18 @@ function getDataFromAPI(searchTerm, callback) {
 }
 
 function renderSearchResult(item) {
+  if(item.poster_path!==null){
   return `
   <li id=${item.id} class= 'search-result'>
-         <p>
+         <p class="poster">
             <h3><strong>${item.title}</strong></h3><br/>
-            <img class='js-movie-poster' src="https://image.tmdb.org/t/p/w500${item.poster_path}"/>
+            <img class='js-movie-poster' src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt=${item.title}/>
+            <br>
             <button class='js-poster-info' type="button">More Info</button>
-           
-            <hr/>
         </p>
     </li>
   `;
+  } 
 }
 
 function displaySearchResult(store) {
@@ -77,7 +78,7 @@ function renderMovieInfo(store) {
   <h2>${movie.title}</h2>
   <p>Score: ${movie.vote_average}</p>
   <p>Release Date: ${movie.release_date}</p>
-  <button class="js-mouseover"type='button'>More Info</button>
+  <button class="js-mouseover" type='button'>More Info</button>
   <button class='js-start-over' type="reset">Start Over</button>
   <p hidden class="js-movie-overview">${movie.overview}</p>
   `;
