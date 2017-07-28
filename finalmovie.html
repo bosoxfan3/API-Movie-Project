@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="movie.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Find Your Film</title>
+</head>
+
+<body>
+  <div class="js-start-page">
+    <h1>Find Your Film</h1>
+    <form action="#" class="js-form">
+      <label for="query"></label>
+      <input type="text" placeholder="ie. Braveheart" class="js-input"></input>
+      <button type="submit" class="js-submit">Submit</button>
+    </form>
+  </div>
+
+  <div class="js-actor-result-page" hidden>
+    <button class='js-start-over' type="reset">Start Over</button>
+    <ul class='js-movie-result-list'>
+      </ul>
+  </div>
+
+  <div class="js-movie-result-page" hidden></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="movie.js" crossorigin></script>
+</body>
+
+</html>
