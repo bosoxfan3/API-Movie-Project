@@ -1,20 +1,18 @@
 'use strict';
 
 const STORE = {
-  searchTerm: "Casablanca",
+  searchTerm: 'Casablanca',
   data: null,
-  apikey: "58adaf1c",
-  returnType: 'json'
+  api_key: '3800867fcd4fc608e503fe922a96c054',
 };
 
-const movieDatabase = 'https://www.omdbapi.com/';
+const movieDatabase = 'https://api.themoviedb.org/3/search/movie';
 
 function getDataFromAPI(searchTerm, callback) {
   const query = {
-    apikey: STORE.apikey,
-    s: searchTerm,
-    r: STORE.returnType
-  }
+    api_key: STORE.api_key,
+    query: searchTerm,
+  };
 
   $.getJSON(movieDatabase, query, function(response) {
     STORE.data=response;
@@ -25,14 +23,19 @@ function getDataFromAPI(searchTerm, callback) {
 function renderSearchResult(item) {
   return `
   <div class= 'result search-result'>
-        <p>${item.Title}</p><button type="button">More Info</button>
+         <p>
+            <h3><strong>${item.title}</strong></h3><br/>
+            <img src="https://image.tmdb.org/t/p/w500${item.poster_path}"/>
+            <hr/>
+        </p>
     </div>
   `;
 }
 
 function displaySearchResult(store) {
   const data = store.data;
-  const results = data.Search.map((item) => {
+  console.log(data);
+  const results = data.results.map((item) => {
     return renderSearchResult(item);
   });
   $('.js-actor-result-page').html(results);
@@ -52,8 +55,10 @@ $(function watchSubmit() {
 
 function renderMovieInfo(result) {
   return `
-  <img src="${result.Poster}">
-  <p>${result.Year}</p>
+  <h2>${result.title}</h2>
+  <p>${result.vote_average}</p>
+  <p>${result.release_date}</p>
+  <button type='button'>More Info</button>
   `;
 }
 
