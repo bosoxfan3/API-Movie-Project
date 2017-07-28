@@ -64,7 +64,7 @@ $(function () {
     renderMovieInfo(STORE);
     $('.js-actor-result-page').attr('hidden', true);
     $('.js-movie-result-page').removeAttr('hidden');
-  }).css('border', '10px solid green');
+  });
 
 
 });
@@ -72,31 +72,42 @@ $(function () {
 
 
 function renderMovieInfo(store) {
-let movie= store.data.results[store.currentIndex];
+  let movie = store.data.results[store.currentIndex];
   let htmlSample = `
   <h2>${movie.title}</h2>
-  <p>${movie.vote_average}</p>
-  <p>${movie.release_date}</p>
-  <button type='button'>More Info</button>
+  <p>Score: ${movie.vote_average}</p>
+  <p>Release Date: ${movie.release_date}</p>
+  <button class="js-mouseover"type='button'>More Info</button>
+  <button class='js-start-over' type="reset">Start Over</button>
+  <p hidden class="js-movie-overview">${movie.overview}</p>
   `;
+
   $('.js-movie-result-page').html(htmlSample);
 }
 
+$('.js-actor-result-page').on('click', '.js-start-over', event => {
+  event.preventDefault();
+  $('.js-actor-result-page').attr('hidden', true);
+  $('.js-start-page').removeAttr('hidden');
+});
+
+$('.js-movie-result-page').on('click', '.js-start-over', event => {
+  event.preventDefault();
+  $('.js-movie-result-page').attr('hidden', true);
+  $('.js-start-page').removeAttr('hidden');
+});
 
 
+$('.js-movie-result-page').on('mouseover','.js-mouseover', event => {
+  
+  let movie = STORE.data.results[STORE.currentIndex];
+  console.log(`${movie}`);
+  $('.js-movie-overview').removeAttr('hidden');
+});
 
-// function resetSearch(event) {
-//   $('js-reset').click(event => {
-//     event.preventDefault();
-//     $('.js-movie-result-page').attr('hidden', true);
-//     $('.js-start-page').removeAttr('hidden');
-
-//   });
-// }
-
-// $('.js-start-over').click(event => {
-//   event.preventDefault();
-//   $('.js-actor-result-page').removeAttr('hidden');
-//   $('.js-start-page').attr('hidden', true);
-// });
-
+$('.js-movie-result-page').on('mouseout','.js-mouseover', event => {
+  
+  let movie = STORE.data.results[STORE.currentIndex];
+  console.log(`${movie}`);
+  $('.js-movie-overview').attr('hidden',true);
+});
