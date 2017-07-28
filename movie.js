@@ -1,29 +1,37 @@
 'use strict';
 
+const STORE = {
+  searchTerm: "Casablanca",
+  data: null,
+  apikey: "58adaf1c",
+  returnType: 'json'
+};
+
 const movieDatabase = 'https://www.omdbapi.com/';
 
 function getDataFromAPI(searchTerm, callback) {
   const query = {
-    apikey: "58adaf1c",
-    s: `${searchTerm}`,
-    r: 'json'
+    apikey: STORE.apikey,
+    s: searchTerm,
+    r: STORE.returnType
   }
+
   $.getJSON(movieDatabase, query, function(response) {
-    displaySearchResult(response);
+    STORE.data=response;
+    displaySearchResult(STORE);
   });
 }
 
-function renderSearchResult(result) {
+function renderSearchResult(item) {
   return `
   <div class= 'result search-result'>
-        <p>${result.Title}</p><button type="button">More Info</button>
+        <p>${item.Title}</p><button type="button">More Info</button>
     </div>
   `;
 }
 
-function displaySearchResult(data) {
-  console.log(data);
-  console.log(data.Search);
+function displaySearchResult(store) {
+  const data = store.data;
   const results = data.Search.map((item) => {
     return renderSearchResult(item);
   });
